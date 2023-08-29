@@ -12,6 +12,28 @@
 </head>
 
 <body>
+    <h1>Summa Tinder</h1>
+    <nav>
+        <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="event.php">Events</a></li>
+            <li><a href="login.php">Inloggen</a></li>
+        </ul>
+    </nav>
+
+    <div class="section">
+        <h3>Ben jij klaar om mensen bij elkaar te brengen en overgetelijke ervaringen te creëren?</h3>
+        <img src="images/huisfeest1.jpg" alt="huisfeestfoto">
+        <p>Ga naar events of maak nu een account aan!</p>
+        <div class="buttons">
+            <a href="event.php"><button>Events</button></a>
+            <a href="inlog.php"><button>Account aanmaken</button></a>
+        </div>
+    </div>
+
+
+
+
 
 </body>
 

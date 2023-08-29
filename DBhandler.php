@@ -5,6 +5,7 @@ class DbHandler
     private $userName = "root";
     private $password = "";
 
+
     public function AcreateUser($user, $password)
     {
         try {
