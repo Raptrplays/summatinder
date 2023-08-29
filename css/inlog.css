@@ -1,0 +1,46 @@
+*
+{
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Roboto Slab', serif;
+}
+
+body{
+    background-color: #111111;
+}
+
+nav {
+    flex: 1;
+    text-align: right;
+}
+
+nav ul {
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav ul li {
+    list-style: none;
+    margin-left: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+ 
+nav ul li a:hover {
+    opacity: 0.8;
+}
+
+nav ul li a.button {
+    background-color: #EE4D2F;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+nav ul li a.button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
