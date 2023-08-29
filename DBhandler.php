@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 final class dbHandler
 {
     private $dataSource = "mysql:dbname=tinder;host=localhost;";
@@ -36,6 +35,21 @@ final class dbHandler
         }
     }*/
 
+    public function CountEventNumber()
+    {
+        try{
+            $pdo = new PDO($this->dataSource, $this->username, $this->password);
+            $statement = $pdo->prepare("SELECT COUNT(userID) FROM `joinedevents` WHERE eventID = :EventID");
+            $statement->bindParam("EventID", $EventID, PDO::PARAM_INT);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $exception){
+            var_dump($exception);
+            return false;
+        }
+    }
+
     public function InsertEvent($eventname, $eventdesc, $eventlocation)
     {
         try{
@@ -69,15 +83,7 @@ final class dbHandler
         }
     }
 
+
+
 }
 ?>
-=======
-class DbHandler
-{
-    private $dataSource = "mysql:dbname=tinder;host=localhost;";
-    private $userName = "root";
-    private $password = "";
-
-   
-}
->>>>>>> 7d17a2e328f2b5006d02d2fdb457904b70e571c8
