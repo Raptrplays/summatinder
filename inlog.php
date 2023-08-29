@@ -2,42 +2,7 @@
   require_once "dbHandler.php";
     session_start();
     $db = new dbHandler();
-    function destroySession() {
-        session_unset();
-        session_destroy();
-    }
-
-    if (isset($_POST['logout'])) {
-        destroySession();
-    }
-
-    if (isset($_POST["submit"])) {
-        $username = $_POST['naam'];
-        $password = $_POST['password'];
-        $repeat_password = $_POST['repeat_password'];
-
-        if (empty($username) || empty($password) || empty($repeat_password)) {
-            echo "Vul alles in";
-            exit;
-        }
-
-        if ($password !== $repeat_password) {
-            echo "Passwords zijn niet gelijk";
-            exit;
-        }
-
-        $result = $db->createUser($username, $password);
-
-        if ($result) {
-            $_SESSION['naam'] = $username;
-            $_SESSION['password'] = $password;
-            $_SESSION['GebruikersId'] = $id;
-            header("Location: account.php");
-            exit;
-        } else {
-            echo "Error!!!";
-        }
-    }
+    
 ?>
 <!DOCTYPE html>
 <html lang="nl">
