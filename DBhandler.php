@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 final class dbHandler
 {
     private $dataSource = "mysql:dbname=tinder;host=localhost;";
@@ -70,3 +71,13 @@ final class dbHandler
 
 }
 ?>
+=======
+class DbHandler
+{
+    private $dataSource = "mysql:dbname=tinder;host=localhost;";
+    private $userName = "root";
+    private $password = "";
+
+   
+}
+>>>>>>> 7d17a2e328f2b5006d02d2fdb457904b70e571c8
