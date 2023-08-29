@@ -27,7 +27,7 @@ class DbHandler
         try {
             $pdo = new PDO($this->dataSource, $this->userName, $this->password);
             $statement = $pdo->prepare("INSERT INTO gebruikers (username, password) VALUES (:naam, :password)");
-            $statement->bindParam(":username", $naam, PDO::PARAM_STR);
+            $statement->bindParam(":username", $userName, PDO::PARAM_STR);
             $statement->bindParam(":password", $password, PDO::PARAM_STR);
             $statement->execute();
             $id = $pdo->lastInsertId();
