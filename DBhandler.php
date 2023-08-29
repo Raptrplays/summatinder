@@ -65,7 +65,7 @@ class DbHandler
         }
     }*/
 
-    public function CountEventNumber()
+    public function CountEventNumber($EventID)
     {
         try{
             $pdo = new PDO($this->dataSource, $this->userName, $this->password);
