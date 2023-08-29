@@ -1,7 +1,25 @@
-*
+body
 {
     background-color: #111111;
     margin: 0%;
     padding: 0%;
     font-family: 'Roboto Slab', serif;
+}
+.grid-container
+{
+    min-height: 85vh;
+    min-width: 80vw;
+    background-color: rgb(57, 57, 57);
+    padding: 5%;
+    margin: 0%;
+    display: flexbox;
+}
+#event-block
+{
+    color: white;
+    width: 49%;
+    border-style: groove;
+    border-color: aqua;
+    border-radius: 2px;
+
 }
