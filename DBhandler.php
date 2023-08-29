@@ -36,6 +36,19 @@ class DbHandler
             return false;
         }
     }
+    public function selectAllJoinedEvents()
+    {
+        try{
+            $pdo = new PDO($this->dataSource, $this->userName, $this->password);
+            $statement = $pdo->prepare("SELECT * FROM `joinedevents`;");
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $exception){
+            var_dump($exception);
+            return false;
+        }
+    }
     /*
     public function selectOneEvent($EventID){
         try{
