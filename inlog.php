@@ -1,8 +1,14 @@
 <?php
   require_once "dbHandler.php";
-    session_start();
+    //session_start();
     $db = new dbHandler();
     
+    
+
+    if(isset($_POST)) {
+      $user = $_POST['name'];
+      $password = $_POST['password'];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -20,8 +26,8 @@
         <header>Registreer hier!</header>
         <form action="" method="post">
             <div class="form-group">
-                <label for="naam">Naam:</label>
-                <input type="text" name="naam" placeholder="Naam:">
+                <label for="name">Naam:</label>
+                <input type="text" name="name" placeholder="Naam:">
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>

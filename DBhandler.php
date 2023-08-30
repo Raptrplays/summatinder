@@ -6,7 +6,7 @@ class DbHandler
     private $password = "";
 
 
-    public function AcreateUser($user, $password)
+    public function createUser($user, $password)
     {
         try {
             $pdo = new PDO($this->dataSource, $this->userName, $this->password);
