@@ -62,6 +62,21 @@ class DbHandler
         }
     }
 
+    public function CheckJoinedEvents($userid)
+    {
+        try{
+            $pdo = new PDO($this->dataSource, $this->userName, $this->password);
+            $statement = $pdo->prepare("SELECT * FROM `joinedevents` INNER JOIN events on joinedevents.eventID = events.eventID WHERE userID = :userid;");
+            $statement->bindParam("userid", $userid, PDO::PARAM_INT);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $exception){
+            var_dump($exception);
+            return false;
+        }
+    }
+
     //SELECT * ,(SELECT COUNT(userID) FROM `joinedevents` WHERE events.eventID = joinedevents.eventID) as joinedcount FROM `events`;
 
 
