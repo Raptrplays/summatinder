@@ -73,8 +73,19 @@
                 //$count = $row['joinedcount'];
                 $count1 = $dbHandler->CountEventNumber($eventid);
                 $count = $count1[0]['COUNT(userID)'];
+                $joined = $dbHandler->CheckJoined($userid, $eventid);
+                if($joined == true)
+                {
+                echo"<?php
+                    include checkedcolor.php;
+                ?>";
+                }
+                else
+                {
+                    
+                }
 
-                echo "<div class='event-block'>
+                echo "<div id=$eventid class='event-block'>
                         <h3>$name</h3>
                         <p>$desc</p>
                         <p>$location</p>
@@ -91,6 +102,7 @@
                     
                 echo "</div>";
             }
+            
         } catch (PDOException $e) {
             die("Query failed: " . $e->getMessage());
         }
