@@ -159,7 +159,7 @@ class DbHandler
             InsertJoin123($userid, $eventid);
         }
         else if($count >0 && count != null){
-
+            deleteJoin($userid, $eventid);
         }
         else{
             return false;
