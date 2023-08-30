@@ -13,6 +13,14 @@
 </head>
 
 <body>
+<h1>Summa Tinder</h1>
+    <nav>
+        <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="event.php">Events</a></li>
+            <li><a href="inlog.php">Inloggen</a></li>
+        </ul>
+    </nav>
     <div class="grid-container">
         <?php
         // Include the database connection file
