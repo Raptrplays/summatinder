@@ -16,16 +16,15 @@
     <div class="grid-container">
         <?php
         // Include the database connection file
-        require_once 'DBHandler.php';
+        require_once 'DBhandler.php';
+        $dbHandler = new dbHandler();
 
         try {
             // Perform database operations using $pdo
 
             // Example query
-            $statement = $pdo->query("SELECT * FROM events");
-            $statement = $pdo->query("SELECT * FROM joinedevents");
-
-            $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $countrows = $dbHandler->selectAllJoinedEvents();
+            $rows = $dbHandler->SelectAllEVents();
 
             // Output the results
             foreach ($rows as $row) {
@@ -33,15 +32,13 @@
                 $name = $row['eventName'];
                 $desc = $row['eventDesc'];
                 $location = $row['eventLocation'];
-                
-                $counter = $row['count(userid)'];
 
                 echo "<div class='event-block'>
                         <h3>$name</h3>
                         <p>$desc</p>
                         <p>$location</p>
-                        <p>$counter<p>
-                    </div>";
+                        <p><p>";
+                echo "</div>";
             }
         } catch (PDOException $e) {
             die("Query failed: " . $e->getMessage());
