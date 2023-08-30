@@ -6,8 +6,9 @@
     
 
     if(isset($_POST)) {
-      $user = $_POST['name'];
-      $password = $_POST['password'];
+        $user = $_POST['name'];
+        $password = $_POST['password'];
+        $db->createUser($user, $password);
     }
 ?>
 <!DOCTYPE html>
@@ -39,8 +40,8 @@
             <header>Registreer hier!</header>
             <form action="" method="post">
                 <div class="form-group">
-                    <label for="naam">Naam:</label>
-                    <input type="text" name="naam" placeholder="Naam:">
+                    <label for="name">Naam:</label>
+                    <input type="text" name="name" placeholder="Naam:">
                 </div>
                 <div class="form-group">
                     <label for="password">Password:</label>
