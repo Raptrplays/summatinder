@@ -10,10 +10,22 @@ class DbHandler
     {
         try {
             $pdo = new PDO($this->dataSource, $this->userName, $this->password);
-            $statement = $pdo->prepare("INSERT INTO user (username, password) VALUES(:name, :password)");
-            $statement->bindParam(":name", $user, PDO::PARAM_STR);
-            $statement->bindParam(":password", $password, PDO::PARAM_STR);
-            $statement->execute();
+            $statement1 = $pdo->prepare("SELECT * FROM user WHERE username = :name AND password = :password");
+            $statement1->bindParam(":name", $user, PDO::PARAM_STR);
+            $statement1->bindParam(":password", $password, PDO::PARAM_STR);
+            $statement1->execute();
+            
+            if ($statement1->rowCount() == 0) 
+            { 
+                $statement = $pdo->prepare("INSERT INTO user (username, password) VALUES(:name, :password)");
+                $statement->bindParam(":name", $user, PDO::PARAM_STR);
+                $statement->bindParam(":password", $password, PDO::PARAM_STR);
+                $statement->execute();
+            }
+            else
+            {
+                echo ("user bestaat al");
+            }
         } catch (PDOException $e) {
             var_dump($e);
             return false;

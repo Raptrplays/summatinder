@@ -3,7 +3,7 @@
         //session_start();
         $db = new dbHandler();
         
-    if(isset($_POST)) {
+    if(isset($_POST['create'])) {
         $user = $_POST['name'];
         $password = $_POST['password'];
         $db->createUser($user, $password);
@@ -31,33 +31,35 @@
             <li><a href="inlog.php">Inloggen</a></li>
         </ul>
     </nav>
-
-    <div class="form-container">
-
-        <div id="inlog-form">
-            <header>Registreer hier!</header>
-            <form action="" method="post">
-                <div class="form-group">
-                    <label for="name">Naam:</label>
-                    <input type="text" name="name" placeholder="Naam:">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" name="password" placeholder="Password:">
-                </div>
-                <div class="form-group">
-                    <label for="repeat_password">Herhaal password</label>
-                    <input type="password" name="repeat_password" placeholder="Herhaal password:">
-                </div>
-                    <input type="submit" value="Registreer" name="submit">
-            </form>
-            <div>
+        <div class="form-container">
+            <div id="inlog-form">
+                <header>Registreer hier!</header>
+                <form action="" method="post">
+                    <div class="form-group">
+                        <label for="name">Naam:</label>
+                        <input type="text" name="name" placeholder="Naam:" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" placeholder="Password:" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="repeat_password">Herhaal password</label>
+                        <input type="password" name="repeat_password" placeholder="Herhaal password:" required>
+                    </div>
+                        <input type="submit" value="Registreer" name="create">
+                </form>
+                <form action="">
+                    <div>
+                        <p>Al geregistreerd?</p>
+                    </div>
+                    <input type="hidden" name="login">
+                    <input type="submit" value="Log hier in!" name="submit">
+                </form>
                 <div>
-                    <p>Al geregistreerd?<a href="login.php">Log hier in!</a></p>
                 </div>
             </div>
         </div>
-    </div>
 </body>
 
 </html>
