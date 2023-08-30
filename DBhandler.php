@@ -142,6 +142,33 @@ class DbHandler
 
     public function InsertJoin($userid, $eventid)
     {
+        $count = null;
+        try{
+        $pdo = new PDO($this->dataSource, $this->userName, $this->password);
+        $statement = $pdo->prepare("SELECT COUNT(*) FROM `joinedevents` WHERE userID = :USERID AND eventID = :EVENTID");
+        $statement->bindParam("USERID", $userid, PDO::PARAM_INT);
+        $statement->bindParam("EVENTID", $eventid, PDO::PARAM_INT);
+        $statement->execute();
+        $count = $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $exception){
+            var_dump($exception);
+            return false;
+        }
+        if($count ==0 && count != null){
+            InsertJoin123($userid, $eventid);
+        }
+        else if($count >0 && count != null){
+
+        }
+        else{
+            return false;
+        }
+        
+    }
+
+    public function InsertJoin123($userid, $eventid)
+    {
         try{
             $pdo = new PDO($this->dataSource, $this->userName, $this->password);
             $statement = $pdo->prepare("INSERT INTO `joinedevents`(`userID`, `eventID`) VALUES (:UserID,:EventID)");
@@ -152,6 +179,22 @@ class DbHandler
         }
         catch(PDOException $exception){
             var_dump($exception);
+            return false;
+        }
+    }
+
+    public function deleteJoin($userid, $eventid)
+    {
+        try{
+            $pdo = new PDO($this->dataSource, $this->username, $this->password);
+            $statement = $pdo->prepare("DELETE FROM `joinedevents` WHERE userID = :UserID and eventID = :EventID;");
+            $statement->bindParam("UserID", $userid, PDO::PARAM_INT);
+            $statement->bindParam("EventID", $eventid, PDO::PARAM_INT);
+            $statement->execute();
+            return true;
+        }
+        catch(PDOException $e){
+            var_dump($e);
             return false;
         }
     }
