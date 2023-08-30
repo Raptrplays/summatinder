@@ -186,7 +186,7 @@ class DbHandler
     public function deleteJoin($userid, $eventid)
     {
         try{
-            $pdo = new PDO($this->dataSource, $this->username, $this->password);
+            $pdo = new PDO($this->dataSource, $this->userName, $this->password);
             $statement = $pdo->prepare("DELETE FROM `joinedevents` WHERE userID = :UserID and eventID = :EventID;");
             $statement->bindParam("UserID", $userid, PDO::PARAM_INT);
             $statement->bindParam("EventID", $eventid, PDO::PARAM_INT);
