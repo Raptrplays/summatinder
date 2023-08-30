@@ -3,8 +3,6 @@
         //session_start();
         $db = new dbHandler();
         
-    
-
     if(isset($_POST)) {
         $user = $_POST['name'];
         $password = $_POST['password'];
