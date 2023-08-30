@@ -68,9 +68,11 @@ h1 {
 {
     color: black;
     background-color: rgb(49, 245, 49);
+    width: 48px;
 }
 .leavebtn
 {
     color: black;
     background-color: red;
+    width: 48px;
 }

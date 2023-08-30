@@ -61,7 +61,7 @@
             $rows = $dbHandler->SelectAllWithJoinedCount();
             $rows = $dbHandler->SelectAllEVents();
 
-            $userid = 2;
+            $userid = 4;
 
             // Output the results
             foreach ($rows as $row) {
@@ -82,8 +82,8 @@
                         <form action='event.php' method='POST'>
                         <input type='hidden' value='$userid' name='user'>
                         <input type='hidden' value='$eventid' name='event'>
-                        <input type='submit' name='JoinEvent'>
-                        <input type='submit' name='LeaveEvent'>
+                        <input class='joinbtn' type='submit' value='Join' name='JoinEvent'>
+                        <input class='leavebtn' type='submit' value='Leave' name='LeaveEvent'>
                         </form>";
                         
                         

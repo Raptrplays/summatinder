@@ -170,7 +170,7 @@ class DbHandler
             $statement->execute();
             $count = $statement->fetchAll(PDO::FETCH_ASSOC);
             
-            if($count < 1 && $count != null){
+            if($count[0]['COUNT(*)'] < 1){
                 $pdo = new PDO($this->dataSource, $this->userName, $this->password);
                 $statement = $pdo->prepare("INSERT INTO `joinedevents`(`userID`, `eventID`) VALUES (:UserID,:EventID)");
                 $statement->bindParam("UserID", $userid, PDO::PARAM_INT);
