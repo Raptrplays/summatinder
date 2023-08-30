@@ -17,7 +17,7 @@
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="event.php">Events</a></li>
-            <li><a href="login.php">Inloggen</a></li>
+            <li><a href="inlog.php">Inloggen</a></li>
         </ul>
     </nav>
 

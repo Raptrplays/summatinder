@@ -36,6 +36,37 @@ class DbHandler
             return false;
         }
     }
+    public function selectAllJoinedEvents()
+    {
+        try{
+            $pdo = new PDO($this->dataSource, $this->userName, $this->password);
+            $statement = $pdo->prepare("SELECT * FROM `joinedevents`;");
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $exception){
+            var_dump($exception);
+            return false;
+        }
+    }
+
+    public function SelectAllWithJoinedCount()
+    {
+        try{
+            $pdo = new PDO($this->dataSource, $this->userName, $this->password);
+            $statement = $pdo->prepare("SELECT * ,(SELECT COUNT(userID) FROM `joinedevents` WHERE events.eventID = joinedevents.eventID) as joinedcount FROM `events`;");
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $exception){
+            var_dump($exception);
+            return false;
+        }
+    }
+
+    //SELECT * ,(SELECT COUNT(userID) FROM `joinedevents` WHERE events.eventID = joinedevents.eventID) as joinedcount FROM `events`;
+
+
     /*
     public function selectOneEvent($EventID){
         try{
@@ -52,7 +83,7 @@ class DbHandler
         }
     }*/
 
-    public function CountEventNumber()
+    public function CountEventNumber($EventID)
     {
         try{
             $pdo = new PDO($this->dataSource, $this->userName, $this->password);
