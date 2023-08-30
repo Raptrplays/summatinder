@@ -1,8 +1,14 @@
 <?php
-require_once "dbHandler.php";
-session_start();
-$db = new dbHandler();
+    require_once "dbHandler.php";
+        //session_start();
+        $db = new dbHandler();
+        
+    
 
+    if(isset($_POST)) {
+      $user = $_POST['name'];
+      $password = $_POST['password'];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="nl">
