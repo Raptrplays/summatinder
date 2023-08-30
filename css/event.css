@@ -45,14 +45,22 @@ h1 {
     background-color: rgb(57, 57, 57);
     padding: 5%;
     margin: 0%;
-    display: flexbox;
+    display: flex;
 }
-#event-block
+.event-block
 {
     color: white;
-    width: 30%;
+    width: 40%;
+    height: 225px;
     border-style: groove;
-    border-color: aqua;
+    border-color: black;
     border-radius: 2px;
-
+    background-color: gray;
+    margin: 3%;
+    padding: 20px;
+}
+.cntpple
+{
+    color: lightgray;
+    font-size: 15px;
 }
