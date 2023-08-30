@@ -64,3 +64,13 @@ h1 {
     color: lightgray;
     font-size: 15px;
 }
+.joinbtn
+{
+    color: black;
+    background-color: rgb(49, 245, 49);
+}
+.leavebtn
+{
+    color: black;
+    background-color: red;
+}
