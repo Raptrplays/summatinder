@@ -11,7 +11,60 @@
     <title>Home</title>
 </head>
 
+
 <body>
+
+<?php
+    session_start();
+    function destroySession() {  
+        session_unset();
+        session_destroy();
+    }
+ 
+    if (isset($_POST['logout'])) {
+        destroySession();
+    }
+
+    if (isset($_SESSION['naam'])) {
+        $username = $_SESSION['naam'];
+        $password = $_SESSION['password'];
+        $GebruikersId = $_SESSION['GebruikersId'];
+
+        var_dump($username, $password, $GebruikersId);
+    }
+
+
+   /*
+    ?>
+
+        <div class="container">
+            <div class="box">
+                Welkom, <?php echo $username; ?>!<br>
+                Uw Password: <?php echo $password; ?><br>
+                Jou Id: <?php echo $GebruikersId; ?><br>
+            </div>
+            <form action="index.php" method="post">
+                 <input type="submit" name="logout" id="logout" value="Uitloggen" class="button">
+            </form>
+        </div>
+
+<?php
+*/
+?>
+
+<?php if (isset($_SESSION['naam'])): ?>
+    <div class="container">
+        <div class="box">
+            Welkom, <?php echo $username; ?>!<br>
+            Uw Password: <?php echo $password; ?><br>
+            Jou Id: <?php echo $GebruikersId; ?><br>
+        </div>
+        <form action="index.php" method="post">
+            <input type="submit" name="logout" id="logout" value="Uitloggen" class="button">
+        </form>
+    </div>
+    <?php endif; ?>
+
     <h1>Summa Tinder</h1>
     <nav>
         <ul>

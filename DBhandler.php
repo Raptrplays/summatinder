@@ -158,5 +158,48 @@ class DbHandler
 
 
 
+
+
+
+    public function getUser($naam, $password)
+    {
+        try {
+            $pdo = new PDO($this->dataSource, $this->userName, $this->password);
+            $statement = $pdo->prepare("SELECT * FROM user WHERE username = :username AND password = :password");
+            $statement->bindParam(":username", $naam, PDO::PARAM_STR);
+            $statement->bindParam(":password", $password, PDO::PARAM_STR);
+            $statement->execute();
+
+            $user1 = $statement->fetch(PDO::FETCH_ASSOC);
+            return $user1;
+        } catch (PDOException $e) {
+            var_dump($e);
+            return null;
+        }
+    }
+    public function getGebruikersId($naam, $password)
+    {
+        try {
+            $pdo = new PDO($this->dataSource, $this->userName, $this->password);
+            $statement = $pdo->prepare("SELECT userID FROM user WHERE username = :username AND password = :password");
+            $statement->bindParam(":username", $naam, PDO::PARAM_STR);
+            $statement->bindParam(":password", $password, PDO::PARAM_STR);
+            $statement->execute();
+            
+            $userRow = $statement->fetch(PDO::FETCH_ASSOC);
+            
+            if ($userRow === false) {
+                return null; 
+            }
+            
+            $gebruikersId = $userRow['userID'];
+            
+            return $gebruikersId !== false ? intval($gebruikersId) : null;
+        } catch (PDOException $e) {
+            var_dump($e);
+            return null;
+        }
+    }
+
 }
 ?>
