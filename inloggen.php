@@ -22,6 +22,35 @@
     <title>Inloggen</title>
 </head>
 
+<?php
+    session_start();
+    require_once 'DBhandler.php';
+ 
+    if (isset($_POST['submit'])) {
+        $username = $_POST['naam'];
+        $password = $_POST['password'];
+
+        $db = new dbHandler();
+        
+        $user = $db->getUser($username, $password);
+        $GebruikersId = $db->getGebruikersId($naam, $password);
+
+        if ($user && $GebruikersId) {
+            $_SESSION['naam'] = $username;
+            $_SESSION['password'] = $password;
+            $_SESSION['GebruikersId'] = $GebruikersId; 
+            header("Location: index.php");
+            
+            exit;
+        } else {
+            header("Location: inloggen.php?error=1");
+            echo "test";
+            var_dump($username, $password);
+            exit;
+        }
+    }
+    ?>
+
 <body>
     <h1>Summa Tinder</h1>
     <nav>
@@ -33,8 +62,8 @@
     </nav>
         <div class="form-container">
             <div id="inlog-form">
-                <header>Registreer hier!</header>
-                <form action="" method="post">
+                <header>Log hier in!</header>
+                <form action="index.php" method="post">
                     <div class="form-group">
                         <label for="name">Naam:</label>
                         <input type="text" name="name" placeholder="Naam:" required>
@@ -43,20 +72,9 @@
                         <label for="password">Password:</label>
                         <input type="password" name="password" placeholder="Password:" required>
                     </div>
-                    <div class="form-group">
-                        <label for="repeat_password">Herhaal password</label>
-                        <input type="password" name="repeat_password" placeholder="Herhaal password:" required>
-                    </div>
-                        <input type="submit" value="Registreer" name="create">
+                        <input type="submit" value="Login" name="create">
                 </form>
-                <form action="">
-                    <div>
-                        <p>Al geregistreerd?</p>
-                    </div>
-                    <input type="hidden" name="login">
-                    
-                </form>
-                <div><a href="inloggen.php" id="Inloggen">Log hier in!</a></div>
+                deeeeeeeeeeeeeeeeeeeeee
                 <div>
                 </div>
             </div>
