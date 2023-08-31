@@ -248,6 +248,20 @@ class DbHandler
         }
     }
     
+    public function deleteJoinAll($eventid)
+    {
+        try{
+            $pdo = new PDO($this->dataSource, $this->userName, $this->password);
+            $statement = $pdo->prepare("DELETE FROM `joinedevents` WHERE eventID = :EventID;");
+            $statement->bindParam("EventID", $eventid, PDO::PARAM_INT);
+            $statement->execute();
+            return true;
+        }
+        catch(PDOException $e){
+            var_dump($e);
+            return false;
+        }
+    }
 
     public function deleteJoin($userid, $eventid)
     {
