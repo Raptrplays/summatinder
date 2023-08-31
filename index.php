@@ -29,8 +29,6 @@
         $username = $_SESSION['naam'];
         $password = $_SESSION['password'];
         $GebruikersId = $_SESSION['GebruikersId'];
-
-        var_dump($username, $password, $GebruikersId);
     }
 
 
