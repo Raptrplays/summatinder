@@ -141,7 +141,7 @@ class DbHandler
         }
     }
 
-    public function deletevent($userid, $eventid)
+    public function deleteEvent($userid, $eventid)
     {
         try{
             $pdo = new PDO($this->dataSource, $this->userName, $this->password);
