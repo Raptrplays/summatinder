@@ -230,12 +230,12 @@ class DbHandler
 
 
 
-    public function getUser($naam, $password)
+    public function getUser($username, $password)
     {
         try {
             $pdo = new PDO($this->dataSource, $this->userName, $this->password);
             $statement = $pdo->prepare("SELECT * FROM user WHERE username = :username AND password = :password");
-            $statement->bindParam(":username", $naam, PDO::PARAM_STR);
+            $statement->bindParam(":username", $username, PDO::PARAM_STR);
             $statement->bindParam(":password", $password, PDO::PARAM_STR);
             $statement->execute();
 
@@ -246,12 +246,12 @@ class DbHandler
             return null;
         }
     }
-    public function getGebruikersId($naam, $password)
+    public function getGebruikersId($username, $password)
     {
         try {
             $pdo = new PDO($this->dataSource, $this->userName, $this->password);
             $statement = $pdo->prepare("SELECT userID FROM user WHERE username = :username AND password = :password");
-            $statement->bindParam(":username", $naam, PDO::PARAM_STR);
+            $statement->bindParam(":username", $username, PDO::PARAM_STR);
             $statement->bindParam(":password", $password, PDO::PARAM_STR);
             $statement->execute();
             

@@ -26,31 +26,35 @@
     session_start();
     require_once 'DBhandler.php';
  
-    if (isset($_POST['submit'])) {
+    /*if (isset($_POST['inloggen'])) {
+        $username = $_POST['name'];
+        $password = $_POST['password'];
+        
+        $db = new dbHandler();
+        $db->createUser($username, $password);
+    }*/
+
+    if (isset($_POST['inloggen'])) {
         $username = $_POST['naam'];
         $password = $_POST['password'];
 
         $db = new dbHandler();
         
         $user = $db->getUser($username, $password);
-        $GebruikersId = $db->getGebruikersId($naam, $password);
-
+        $GebruikersId = $db->getGebruikersId($username, $password); 
         if ($user && $GebruikersId) {
             $_SESSION['naam'] = $username;
             $_SESSION['password'] = $password;
             $_SESSION['GebruikersId'] = $GebruikersId; 
             header("Location: index.php");
-            
             exit;
         } else {
             header("Location: inloggen.php?error=1");
-            echo "test";
-            var_dump($username, $password);
             exit;
         }
     }
-    ?>
 
+?>
 <body>
     <h1>Summa Tinder</h1>
     <nav>
@@ -63,16 +67,16 @@
         <div class="form-container">
             <div id="inlog-form">
                 <header>Log hier in!</header>
-                <form action="index.php" method="post">
+                <form action="" method="post">
                     <div class="form-group">
                         <label for="name">Naam:</label>
-                        <input type="text" name="name" placeholder="Naam:" required>
+                        <input type="text" name="naam" placeholder="Naam:" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password:</label>
                         <input type="password" name="password" placeholder="Password:" required>
                     </div>
-                        <input type="submit" value="Login" name="create">
+                        <input type="submit" value="Login" name="inloggen">
                 </form>
                 deeeeeeeeeeeeeeeeeeeeee
                 <div>
