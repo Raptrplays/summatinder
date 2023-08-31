@@ -123,16 +123,56 @@ class DbHandler
         }
     }
 
-    public function InsertEvent($eventname, $eventdesc, $eventlocation)
+    public function InsertEvent($eventname, $eventdesc, $eventlocation, $userid)
     {
         try{
             $pdo = new PDO($this->dataSource, $this->userName, $this->password);
-            $statement = $pdo->prepare("INSERT INTO `events`(`eventName`, `eventDesc`, `eventLocation`) VALUES (:EventName,:EventDesc,:EventLocation)");
+            $statement = $pdo->prepare("INSERT INTO `events`(`eventName`, `eventDesc`, `eventLocation`, `UserID`) VALUES (:EventName,:EventDesc,:EventLocation,:UserID)");
             $statement->bindParam("EventName", $eventname, PDO::PARAM_STR);
             $statement->bindParam("EventDesc", $eventdesc, PDO::PARAM_STR);
             $statement->bindParam("EventLocation", $eventlocation, PDO::PARAM_STR);
+            $statement->bindParam("UserID", $userid, PDO::PARAM_INT);
             $statement->execute();
             return true;
+        }
+        catch(PDOException $exception){
+            var_dump($exception);
+            return false;
+        }
+    }
+
+    public function deleteEvent($userid, $eventid)
+    {
+        try{
+            $pdo = new PDO($this->dataSource, $this->userName, $this->password);
+            $statement = $pdo->prepare("DELETE FROM `events` WHERE eventID = :EventID AND UserID = :UserID;");
+            $statement->bindParam("EventID", $eventid, PDO::PARAM_INT);
+            $statement->bindParam("UserID", $userid, PDO::PARAM_INT);
+            $statement->execute();
+            return true;
+        }
+        catch(PDOException $e){
+            var_dump($e);
+            return false;
+        }
+    }
+
+    public function CheckCreatedEvent($userid, $eventid)
+    {
+        try{
+            $pdo = new PDO($this->dataSource, $this->userName, $this->password);
+            $statement = $pdo->prepare("SELECT COUNT(*) FROM `events` WHERE eventID = :EVENTID AND UserID = :USERID;");
+            $statement->bindParam("EVENTID", $eventid, PDO::PARAM_INT);
+            $statement->bindParam("USERID", $userid, PDO::PARAM_INT);
+            $statement->execute();
+            $count = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            if($count[0]['COUNT(*)'] < 1){
+                return false;
+            }
+            else{
+                return true;
+            }
         }
         catch(PDOException $exception){
             var_dump($exception);
