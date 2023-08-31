@@ -47,21 +47,33 @@ h1 {
     margin: 0%;
     display: flex;
 }
-.event-block
+.green-eventblock
 {
-    color: white;
+    color: black;
     width: 40%;
     height: 225px;
     border-style: groove;
     border-color: black;
+    background-color: lightgreen;
     border-radius: 2px;
-    background-color: gray;
+    margin: 3%;
+    padding: 20px;
+}
+.gray-eventblock
+{
+    color: black;
+    width: 40%;
+    height: 225px;
+    border-style: groove;
+    border-color: black;
+    background-color: lightgray;
+    border-radius: 2px;
     margin: 3%;
     padding: 20px;
 }
 .cntpple
 {
-    color: lightgray;
+    color: darkgray;
     font-size: 15px;
 }
 .joinbtn

@@ -62,7 +62,8 @@
             $rows = $dbHandler->SelectAllEVents();
 
             $userid = 4;
-
+            $data = array();
+            
             // Output the results
             foreach ($rows as $row) {
                 $eventid = $row['eventID'];
@@ -74,18 +75,32 @@
                 $count1 = $dbHandler->CountEventNumber($eventid);
                 $count = $count1[0]['COUNT(userID)'];
                 $joined = $dbHandler->CheckJoined($userid, $eventid);
+
+                $item;
+
                 if($joined == true)
                 {
-                echo"<?php
-                    include checkedcolor.php;
-                ?>";
+                  $item = true;
                 }
                 else
                 {
-                    
+                  $item = false;
                 }
+                //foreach( )
+                {
 
-                echo "<div id=$eventid class='event-block'>
+                }
+                // $data = array(
+                //     array('text' => 'Item 1', 'isRed' => true),
+                //     array('text' => 'Item 2', 'isRed' => false),
+                // );
+
+                // foreach ($data as $item) {
+                    // Determine the CSS class based on the 'isRed' boolean value
+                    $cssClass = $item ? 'green-eventblock' : 'gray-eventblock';
+                // }
+
+                echo "<div class='$cssClass'>
                         <h3>$name</h3>
                         <p>$desc</p>
                         <p>$location</p>
