@@ -78,6 +78,8 @@
                     </div>
                         <input type="submit" value="Login" name="inloggen">
                 </form>
+                <div>
+                </div>
             </div>
         </div>
 </body>
