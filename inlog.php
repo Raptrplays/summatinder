@@ -1,13 +1,13 @@
 <?php
-    require_once "dbHandler.php";
-        //session_start();
-        $db = new dbHandler();
-        
-    if(isset($_POST['create'])) {
-        $user = $_POST['name'];
-        $password = $_POST['password'];
-        $db->createUser($user, $password);
-    }
+require_once "dbHandler.php";
+//session_start();
+$db = new dbHandler();
+
+if (isset($_POST['create'])) {
+    $user = $_POST['name'];
+    $password = $_POST['password'];
+    $db->createUser($user, $password);
+}
 ?>
 <!DOCTYPE html>
 <html lang="nl">
@@ -31,36 +31,26 @@
             <li><a href="inlog.php">Inloggen</a></li>
         </ul>
     </nav>
-        <div class="form-container">
-            <div id="inlog-form">
-                <header>Registreer hier!</header>
-                <form action="" method="post">
-                    <div class="form-group">
-                        <label for="name">Naam:</label>
-                        <input type="text" name="name" placeholder="Naam:" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" name="password" placeholder="Password:" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="repeat_password">Herhaal password</label>
-                        <input type="password" name="repeat_password" placeholder="Herhaal password:" required>
-                    </div>
-                        <input type="submit" value="Registreer" name="create">
-                </form>
-                <form action="">
-                    <div>
-                        <p>Al geregistreerd?</p>
-                    </div>
-                    <input type="hidden" name="login">
-                    
-                </form>
-                <div><a href="inloggen.php" id="Inloggen">Log hier in!</a></div>
-                <div>
+    <div class="form-container">
+        <div id="inlog-form">
+            <header>Registreer hier!</header>
+            <form action="" method="post">
+                <div class="form-group">
+                    <label for="name">Naam:</label>
+                    <input type="text" name="name" placeholder="Naam:" required>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" placeholder="Password:" required>
+                </div>
+                <div class="form-group">
+                    <label for="repeat_password">Herhaal password</label>
+                    <input type="password" name="repeat_password" placeholder="Herhaal password:" required>
+                </div>
+                <input type="submit" value="Registreer" name="create">
+            </form>
+            <p>Al geregistreerd?<a href="inloggen.php" id="Inloggen">Log hier in!</a></p>
         </div>
+    </div>
 </body>
-
 </html>
