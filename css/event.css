@@ -45,14 +45,46 @@ h1 {
     background-color: rgb(57, 57, 57);
     padding: 5%;
     margin: 0%;
-    display: flexbox;
+    display: flex;
 }
-#event-block
+.green-eventblock
 {
-    color: white;
-    width: 49%;
+    color: black;
+    width: 40%;
+    height: 225px;
     border-style: groove;
-    border-color: aqua;
+    border-color: black;
+    background-color: lightgreen;
     border-radius: 2px;
-
+    margin: 3%;
+    padding: 20px;
+}
+.gray-eventblock
+{
+    color: black;
+    width: 40%;
+    height: 225px;
+    border-style: groove;
+    border-color: black;
+    background-color: lightgray;
+    border-radius: 2px;
+    margin: 3%;
+    padding: 20px;
+}
+.cntpple
+{
+    color: darkgray;
+    font-size: 15px;
+}
+.joinbtn
+{
+    color: black;
+    background-color: rgb(49, 245, 49);
+    width: 48px;
+}
+.leavebtn
+{
+    color: black;
+    background-color: red;
+    width: 48px;
 }

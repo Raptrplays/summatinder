@@ -13,10 +13,37 @@
 </head>
 
 <body>
-<h1>Summa Tinder</h1>
+    <?php
+        if(isset($_POST['JoinEvent']))
+        {
+            require_once 'DBhandler.php';
+        $dbHandler = new dbHandler();
+            if(isset($_POST['user']) && isset($_POST['event']))
+            {
+                $dbHandler->InsertJoin123($_POST['user'], $_POST['event']);
+            }
+            else{
+                echo "error";
+            }
+        }
+        if(isset($_POST['LeaveEvent']))
+        {
+            require_once 'DBhandler.php';
+        $dbHandler = new dbHandler();
+        if(isset($_POST['user']) && isset($_POST['event']))
+            {
+                $dbHandler->DeleteJoin($_POST['user'], $_POST['event']);
+            }
+            else{
+                echo "error2";
+            }
+
+        }
+    ?>
+    <h1>Summa Tinder</h1>
     <nav>
         <ul>
-            <li><a href="index.php">Home</a></li>
+            <li><a href="index.php">Home </a></li>
             <li><a href="event.php">Events</a></li>
             <li><a href="inlog.php">Inloggen</a></li>
         </ul>
@@ -24,33 +51,73 @@
     <div class="grid-container">
         <?php
         // Include the database connection file
-        require_once 'DBHandler.php';
+        require_once 'DBhandler.php';
+        $dbHandler = new dbHandler();
 
         try {
             // Perform database operations using $pdo
 
             // Example query
-            $statement = $pdo->query("SELECT * FROM events");
-            $statement = $pdo->query("SELECT * FROM joinedevents");
+            $rows = $dbHandler->SelectAllWithJoinedCount();
+            $rows = $dbHandler->SelectAllEVents();
 
-            $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
-
+            $userid = 4;
+            $data = array();
+            
             // Output the results
             foreach ($rows as $row) {
                 $eventid = $row['eventID'];
                 $name = $row['eventName'];
                 $desc = $row['eventDesc'];
                 $location = $row['eventLocation'];
-                
-                $counter = $row['count(userid)'];
+                //$rows = count($dbHandler->selectAllJoinedEvents());
+                //$count = $row['joinedcount'];
+                $count1 = $dbHandler->CountEventNumber($eventid);
+                $count = $count1[0]['COUNT(userID)'];
+                $joined = $dbHandler->CheckJoined($userid, $eventid);
 
-                echo "<div class='event-block'>
+                $item;
+
+                if($joined == true)
+                {
+                  $item = true;
+                }
+                else
+                {
+                  $item = false;
+                }
+                //foreach( )
+                {
+
+                }
+                // $data = array(
+                //     array('text' => 'Item 1', 'isRed' => true),
+                //     array('text' => 'Item 2', 'isRed' => false),
+                // );
+
+                // foreach ($data as $item) {
+                    // Determine the CSS class based on the 'isRed' boolean value
+                    $cssClass = $item ? 'green-eventblock' : 'gray-eventblock';
+                // }
+
+                echo "<div class='$cssClass'>
                         <h3>$name</h3>
                         <p>$desc</p>
                         <p>$location</p>
-                        <p>$counter<p>
-                    </div>";
+                        <p class=cntpple>$count people are joining this event.</p>
+                        <form action='event.php' method='POST'>
+                        <input type='hidden' value='$userid' name='user'>
+                        <input type='hidden' value='$eventid' name='event'>
+                        <input class='joinbtn' type='submit' value='Join' name='JoinEvent'>
+                        <input class='leavebtn' type='submit' value='Leave' name='LeaveEvent'>
+                        </form>";
+                        
+                        
+                         
+                    
+                echo "</div>";
             }
+            
         } catch (PDOException $e) {
             die("Query failed: " . $e->getMessage());
         }
