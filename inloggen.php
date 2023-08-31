@@ -22,6 +22,12 @@
     <title>Inloggen</title>
 </head>
 
+<style>
+    body{
+        background-color: #111111;
+    }
+</style>
+
 <?php
     session_start();
     require_once 'DBhandler.php';
